@@ -22,12 +22,19 @@ void init_books(book *books)
 
 void print_bookall(book *books)
 {
-    printf("Buchtitel: %s\n", books->title);
+    printf("Titel: %s\n", books->title);
+    printf("Autor: %s\n",books->author);
+    printf("ISBN: %s\n",books->isbn);
+    printf("---------------\n");
 
 }
 
 int add_book(book *books, char title[MAXLENGTH], char  author[MAXLENGTH], int isbn, struct books* next)
 {
+    strcpy(books->title, title);
+    strcpy(books->author, author);
+    books->isbn = isbn;
+    books->next = books;
 
     return 0;
 }
@@ -43,5 +50,6 @@ int main()
 
 
     printf("Hello world!\n");
+    print_bookall(&book1);
     return 0;
 }
