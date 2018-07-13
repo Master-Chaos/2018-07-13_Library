@@ -3,12 +3,12 @@
 #include <string.h>
 #define MAXLENGTH 50
 
-typedef struct books
+typedef struct bookdb
 {
     char  title[MAXLENGTH];
     char  author[MAXLENGTH];
     int   isbn;
-    struct books* next;
+    struct bookdb* next;
     int bookcount;
 } book;
 
@@ -24,10 +24,18 @@ void init_books(book *books)
 
 void print_bookall(book *books)
 {
-    printf("Titel: %s\n", books->title);
-    printf("Autor: %s\n",books->author);
-    printf("ISBN: %i\n",books->isbn);
-    printf("---------------\n");
+    book* last = books->next;
+    printf("Print out all Books of library:\n");
+    printf("------------------------------------------------------------------\n");
+    do
+    {
+        printf("Titel: %s\n", last->title);
+        printf("Autor: %s\n", last->author);
+        printf("ISBN: %i\n", last->isbn);
+        printf("------------------------------------------------------------------\n");
+        last = last->next;
+    }while (last != NULL);
+
 
 }
 
@@ -35,19 +43,20 @@ int add_book(book *books, char title[MAXLENGTH], char  author[MAXLENGTH], int is
 {
     book* last = books;
     book* new;
-    new = malloc(sizeof(books));
+    new = malloc(sizeof(book));
 
     while(last->next != NULL)
     {
         last = last->next;
     }
     last->next = new;
-    strcpy(new->title, title);
-    strcpy(new->author, author);
+    strncpy(new->title, title, MAXLENGTH-1);
+    strncpy(new->author, author, MAXLENGTH-1);
     new->isbn = isbn;
     new->next = NULL;
     books->bookcount++;
-
+    printf("New book was added! Current number of books: %i\n",books->bookcount);
+    printf("------------------------------------------------------------------\n");
     return 0;
 }
 
@@ -55,11 +64,17 @@ int main()
 {
     book books;
     init_books(&books);
-    add_book(&books,"Am Ende steht Gott", "Jesus Christus", 123456, &book2);
 
+    printf("##################################################################\n");
+    printf("########## Welcome in the national library of Austria! ###########\n");
+    printf("##################################################################\n");
 
+    add_book(&books,"Am Ende steht Gott", "Jesus Christus", 123456);
+    //iprint_bookall(&bookdb, bookdb.bookcount);
+    add_book(&books,"C-Tour with Mike", "Mike Carl Gringer", 79886065);
+    //print_bookall(&bookdb, bookdb.bookcount);
+    add_book(&books,"Fresh Meat", "James Miller", 45677663);
 
-    printf("Hello world!\n");
     print_bookall(&books);
     return 0;
 }
