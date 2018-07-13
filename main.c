@@ -24,7 +24,7 @@ void print_bookall(book *books)
 {
     printf("Titel: %s\n", books->title);
     printf("Autor: %s\n",books->author);
-    printf("ISBN: %s\n",books->isbn);
+    printf("ISBN: %i\n",books->isbn);
     printf("---------------\n");
 
 }
