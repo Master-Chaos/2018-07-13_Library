@@ -35,8 +35,10 @@ int add_book(book *books, char title[MAXLENGTH], char  author[MAXLENGTH], int is
 int main()
 {
     book book1;
-    init_books (&book1);
-
+    book book2;
+    init_books(&book1);
+    init_books(&book2);
+    add_book(&book1,"Am Ende steht Gott", "Jesus Christus", 123456, &book2);
 
 
 
