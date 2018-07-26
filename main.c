@@ -95,7 +95,7 @@ int main()
 
     add_book(&books, "Lord of the Rings", "J.R.R. Tolkien", "English", 9780261102385, 1293);
 
-    add_book(&books, "Mr. Fake", "Sophia Chase", "German", 1983311421,303);
+    add_book(&books, "Nachts an der Seine", "Jojo Moyes", "German", 3499290707, 144);
 
     print_allbooks(&books);
     return 0;
