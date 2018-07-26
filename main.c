@@ -12,6 +12,7 @@ typedef struct bookdb
     int pages;
     int bookcount;
     struct bookdb* next;
+    int isborrowed; // 0 = is not vorrowed 1 is borrowed
 } book;
 
 void init_books(book *books)
@@ -22,6 +23,7 @@ void init_books(book *books)
     books->isbn = 0;
     books->pages =0;
     books->next = NULL;
+    books->isborrowed = 0;
     books->bookcount = 0;
 }
 
@@ -59,12 +61,17 @@ int add_book(book *books, char title[MAXLENGTH], char  author[MAXLENGTH], char  
     new->isbn = isbn;
     new->pages = pages;
     new->next = NULL;
+    books->isborrowed = 0;
     books->bookcount++;
     printf("New book was added! Current number of books: %i\n",books->bookcount);
     printf("------------------------------------------------------------------\n");
     return 0;
 }
 
+int borrow_book(book *books)
+{
+
+}
 int main()
 {
     book books;
@@ -83,6 +90,8 @@ int main()
     add_book(&books, "Der Flüstermann", "Catherine Shepherd", "German", 3944676203 ,334);
 
     add_book(&books, "Sangue giusto", "Franesca Melandri", "Italian", 8817092150, 527);
+
+    add_book(&books, "Mr. Fake", "Sophia Chase", "German", 1983311421,303);
 
     add_book(&books, "Mr. Fake", "Sophia Chase", "German", 1983311421,303);
 
